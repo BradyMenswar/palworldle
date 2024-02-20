@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Lamball",
+        "number": 1,
+        "types": ["Normal"],
+        "title": "Big Floof",
+        "work_suitability": ["Handiwork", "Farming", "Transporting"],
+        "colors": ["White"],
+        "mount_type": "Not ridable",
+        "entry": "A walk up a hill tends to end with this Pal tumbling back down. This causes it to become dizzy and unable to move, making it easy to capture and kill. As a result, this Pal has tumbled down to the very bottom of the food chain itself.",
+        "emojis": ["🍙", "🤘", "⚽", "🐏"],
+        "icon": "lamball.png"
+    },
+    {
+        "name": "Cattiva",
+        "number": 2,
+        "types": ["Normal"],
+        "title": "The Cat's Pajamas",
+        "work_suitability": ["Gathering", "Handiwork", "Mining", "Transporting"],
+        "colors": ["Pink"],
+        "mount_type": "Not ridable",
+        "entry": "At a glance it appears full of confidence, but it is in fact weak and cowardly. Being toyed with by a PinkCat is in many ways the greatest of disgraces.",
+        "emojis": ["👚", "🤘", "😏", "🐈"],
+        "icon": "cattiva.png"
+    }
+]
