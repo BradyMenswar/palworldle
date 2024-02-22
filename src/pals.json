@@ -2,7 +2,7 @@
     {
         "name": "Lamball",
         "number": 1,
-        "types": ["Normal"],
+        "elements": ["Normal"],
         "title": "Big Floof",
         "work_suitability": ["Handiwork", "Farming", "Transporting"],
         "colors": ["White"],
@@ -14,7 +14,7 @@
     {
         "name": "Cattiva",
         "number": 2,
-        "types": ["Normal"],
+        "elements": ["Normal"],
         "title": "The Cat's Pajamas",
         "work_suitability": ["Gathering", "Handiwork", "Mining", "Transporting"],
         "colors": ["Pink"],
@@ -22,5 +22,131 @@
         "entry": "At a glance it appears full of confidence, but it is in fact weak and cowardly. Being toyed with by a PinkCat is in many ways the greatest of disgraces.",
         "emojis": ["👚", "🤘", "😏", "🐈"],
         "icon": "cattiva.png"
+    },
+    {
+        "name": "Chikipi",
+        "number": 3,
+        "elements": ["Normal"],
+        "title": "Plump & Juicy",
+        "work_suitability": ["Gathering", "Farming"],
+        "colors": ["White"],
+        "mount_type": "Not ridable",
+        "entry": "Extremely weak and far too delicious. It is one of the weakest Pals alongside SheepBall. No matter how many are hunted, they just keep appearing.",
+        "emojis": ["🥚", "🍗", "🐔"],
+        "icon": "chikipi.png"
+    },
+    {
+        "name": "Lifmunk",
+        "number": 4,
+        "elements": ["Leaf"],
+        "title": "Coward of the Steppe",
+        "work_suitability": ["Gathering", "Deforesting", "Handiwork", "Medicine Production", "Planting"],
+        "colors": ["Green"],
+        "mount_type": "Not ridable",
+        "entry": "Intelligent as a five to seven-year-old human child. It makes a wonderful partner, but there have been more than a few cases where they've killed their master after learning to use weapons.",
+        "emojis": ["💚", "🔫", "🐿️"],
+        "icon": "lifmunk.png"
+    },
+    {
+        "name": "Foxparks",
+        "number": 5,
+        "elements": ["Fire"],
+        "title": "Revealer of Paths",
+        "work_suitability": ["Kindling"],
+        "colors": ["Orange"],
+        "mount_type": "Not ridable",
+        "entry": "It is unskilled at controlling fire from the moment it is born and tends to choke on the flames it breathes unintentionally. Kitsunebi sneezes are one of the leading causes of forest fires.",
+        "emojis": ["🔥", "👠", "🦊"],
+        "icon": "foxparks.png"
+    },
+    {
+        "name": "Fuack",
+        "number": 6,
+        "elements": ["Water"],
+        "title": "Rowdy Wave Ripper",
+        "work_suitability": ["Handiwork", "Transporting", "Watering"],
+        "colors": ["Blue"],
+        "mount_type": "Not ridable",
+        "entry": "Using its own body water, this Pal can create waves anywhere. It body surfs when in a hurry, but the resulting speed often ends in a fatal collision.",
+        "emojis": ["🌊", "🟦", "🦆"],
+        "icon": "fuack.png"
+    },
+    {
+        "name": "Sparkit",
+        "number": 7,
+        "elements": ["Electricity"],
+        "title": "Livewire Tabby",
+        "work_suitability": ["Generating Electricity", "Handiwork", "Transporting"],
+        "colors": ["Yellow", "Black"],
+        "mount_type": "Not ridable",
+        "entry": "During the dry season, this Pal is always on the verge of blowing a fuse. Sparks can fly with even the slightest provocation, even amongst allies.",
+        "emojis": [],
+        "icon": "sparkit.png"
+    },
+    {
+        "name": "Tanzee",
+        "number": 8,
+        "elements": ["Leaf"],
+        "title": "Dexterous Primate",
+        "work_suitability": ["Gathering", "Deforesting", "Handiwork", "Planting", "Transporting"],
+        "colors": ["Green"],
+        "mount_type": "Not ridable",
+        "entry": "Long ago, this Pal used long objects like tree branches as weapons. After coming into contact with humans, however, it found something slightly more effective: guns.",
+        "emojis": [],
+        "icon": "tanzee.png"
+    },
+    {
+        "name": "Rooby",
+        "number": 9,
+        "elements": ["Fire"],
+        "title": "Chief of the Herd",
+        "work_suitability": ["Kindling"],
+        "colors": ["Red"],
+        "mount_type": "Not ridable",
+        "entry": "Wild FlameBambi surprisingly never get sick. Eating one piece of charcoal a day, made by burning a branch, is the secret to its eternal health.",
+        "emojis": [],
+        "icon": "rooby.png"
+    },
+    {
+        "name": "Pengullet",
+        "number": 10,
+        "elements": ["Water", "Ice"],
+        "title": "Ate Too Much",
+        "work_suitability": ["Cooling", "Handiwork", "Transporting", "Watering"],
+        "colors": ["Blue", "White"],
+        "mount_type": "Not ridable",
+        "entry": "The feathers of this Pal have all but disappeared, but sadly, its desire to fly has remained as strong as ever. Even now, it tries to fly again in any way it can.",
+        "emojis": [],
+        "icon": "pengullet.png"
+    },
+    {
+        "name": "Penking",
+        "number": 11,
+        "elements": ["Water", "Ice"],
+        "title": "Pioneer of the Frozen Sea",
+        "work_suitability": ["Cooling", "Mining", "Watering", "Handiwork", "Transporting"],
+        "colors": ["Blue", "White"],
+        "mount_type": "Not ridable",
+        "entry": "Surprisingly, it is unrelated to Penguin. Ever wanting to be the center of attention, this Pal will strut its stuff for any onlookers.",
+        "emojis": [],
+        "icon": "penking.png"
+    },
+    {
+        "name": "Jolthog",
+        "number": 12,
+        "elements": ["Electricity"],
+        "title": "Don't Touch!",
+        "work_suitability": ["Generating Electricity"],
+        "colors": ["Yellow", "White"],
+        "mount_type": "Not ridable",
+        "entry": "Releases the electricity stored in its body when under attack, producing a shock that can be over 10 million volts. If thrown, it can even be more lethal than any conventional heavy weaponry.",
+        "emojis": [],
+        "icon": "jolthog.png"
     }
+    
+    
+    
+    
+    
+    
 ]

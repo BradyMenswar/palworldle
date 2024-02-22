@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { FormEvent, useEffect, useState } from "react";
+import { AiOutlineCaretDown, AiOutlineCaretUp, AiOutlineCheck, AiOutlineSearch } from "react-icons/ai";
 import palData from "./pals.json";
+import { Tooltip } from "react-tooltip";
 
 interface Pal {
   name: string;
   number: number;
-  types: string[];
+  elements: string[];
   title: string;
   work_suitability: string[];
   colors: string[];
@@ -16,13 +17,19 @@ interface Pal {
 }
 
 const pals: Pal[] = palData as Pal[];
-let answer: Pal;
+
+const answer: Pal = pals[0];
 
 const Classic = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [remainingPals, setRemainingPals] = useState<Pal[]>(pals);
   const [filteredPals, setFilteredPals] = useState<Pal[]>([]);
   const [guessedPals, setGuessedPals] = useState<Pal[]>([]);
+
+  const correctColor = "bg-green-400";
+  const wrongColor = "bg-red-400"
+  const partialColor = "bg-yellow-400"
+
 
   useEffect(() => {
     const results = remainingPals.filter((pal) => {
@@ -32,6 +39,15 @@ const Classic = () => {
     setFilteredPals(results);
   }, [searchTerm]);
 
+  function areArraysIdentical(array1: string[], array2: string[]): boolean {
+    return array1.length === array2.length && array1.every((value, index) => value === array2[index]);
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    if(filteredPals.length !== 0) guess(filteredPals[0]);
+  }
+
   function guess(guessedPal: Pal) {
     setGuessedPals([guessedPal, ...guessedPals]);
     const removeGuessedPal = remainingPals.filter((pal) => {
@@ -39,42 +55,39 @@ const Classic = () => {
     });
     setRemainingPals(removeGuessedPal);
     setSearchTerm("");
+
+    if(guessedPals.includes(answer)) {
+      console.log('Correct!')
+    }
+  }
+
+  function checkValue(palValue: string | number, answerValue: string | number) {
+    if(palValue === answerValue) {
+      return correctColor;
+    }
+    return wrongColor;
+  }
+
+  function checkArray(palArray: string[], answerArray: string[]) {
+    if(areArraysIdentical(palArray, answerArray)) return correctColor;
+    if(palArray.some(element => answerArray.includes(element))) return partialColor;
+    return wrongColor;
+  }
+
+  function checkValueInArray(palValue: string, answerArray: string[]) {
+    if(answerArray.includes(palValue)) return correctColor;
+    return wrongColor
+  }
+
+  function checkArrowDirection(palValue: number, answerValue: number) {
+    if(palValue === answerValue) return <AiOutlineCheck id={"numberArrow" + palValue} />
+    if(palValue < answerValue) return <AiOutlineCaretUp id={"numberArrow" + palValue} />
+    return <AiOutlineCaretDown id={"numberArrow" + palValue} />
   }
 
   return (
-    <div>
-      <div className="p-2">
-        {guessedPals.map((pal: Pal) => (
-          <div key={pal.name} className="flex items-center w-full gap-4 p-4">
-            <img
-              src={`${process.env.PUBLIC_URL}/pal-icons/${pal.icon}`}
-              alt={pal.name}
-              className="object-cover h-16 border-2 border-indigo-600 rounded-full aspect-square"
-            />
-            <h2 className="text-2xl">{pal.name}</h2>
-            <div>
-              <h4>
-                {pal.types.map((type: string) => {
-                  return type + " ";
-                })}
-              </h4>
-              <h4>
-                {pal.colors.map((color: string) => {
-                  return color + " ";
-                })}
-              </h4>
-              <h4>{pal.number}</h4>
-              <h4>{pal.mount_type}</h4>
-              <h4>
-                {pal.work_suitability.map((work: string) => {
-                  return work + " ";
-                })}
-              </h4>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="relative mt-2 rounded-md shadow-sm">
+    <div className="w-full">
+      <form className="relative w-full mt-2 rounded-md shadow-sm" onSubmit={(event) => {handleSubmit(event)}}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <span className="text-gray-500 sm:text-sm">
             <AiOutlineSearch />
@@ -87,7 +100,7 @@ const Classic = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-      </div>
+      </form>
       <div className="p-2">
         {filteredPals.map((pal: Pal) => (
           <button
@@ -104,7 +117,67 @@ const Classic = () => {
           </button>
         ))}
       </div>
+
+      {guessedPals.length !== 0 && <div className="grid grid-cols-6 gap-4 p-2 text-center">
+        <h4>Pal</h4>
+        <h4>Element</h4>
+        <h4>Color</h4>
+        <h4>Ridable</h4>
+        <h4>Work Suitability</h4>
+        <h4>Paldeck #</h4>
+        {guessedPals.map((guessedPal: Pal) => {
+          return(
+            <>
+            <div className={"flex items-center justify-center p-3 aspect-square " + checkValue(guessedPal.name, answer.name)}>
+              <img id={guessedPal.name} src={`${process.env.PUBLIC_URL}/pal-icons/${guessedPal.icon}`} alt="" className="object-cover w-full"/>
+              <Tooltip
+                      anchorSelect={"#" + guessedPal.name}
+                      content={guessedPal.name}
+                    />
+            </div>
+            <div className={"flex items-center justify-center p-3 aspect-square " + checkArray(guessedPal.elements, answer.elements)}>
+              {guessedPal.elements.map(element => {
+                return(
+                  <>
+                    <img id={element} className="object-cover" src={`${process.env.PUBLIC_URL}/element-icons/${element}.png`} alt={element} />
+                    <Tooltip
+                      anchorSelect={"#" + element}
+                      content={element}
+                    />
+                  </>
+                  )
+              })}
+            </div>
+            <div className={"flex items-center justify-center p-3 aspect-square " + checkArray(guessedPal.colors, answer.colors)}>
+              <h4>{guessedPal.colors.map(color => {
+                return color + " ";
+              })}
+              </h4>
+            </div>
+            <div className={"flex items-center justify-center p-3 aspect-square " + checkValue(guessedPal.mount_type, answer.mount_type)}>
+              <h4>{guessedPal.mount_type}</h4>
+            </div>
+            <div className={"flex flex-wrap gap-1 items-center justify-center p-2 aspect-square " + checkArray(guessedPal.work_suitability, answer.work_suitability)}>
+              {guessedPal.work_suitability.map(work => {
+                return(<>
+                 <img id={work.replace(' ', '-')} className={"object-cover w-8 " } src={`${process.env.PUBLIC_URL}/work-icons/${work}.png`} alt={work} />
+                  <Tooltip 
+                    anchorSelect={"#" + work.replace(' ', '-')}
+                    content={work}/>
+                </>)
+              })}
+            </div>
+            <div className={"flex items-center justify-center p-3 aspect-square " + checkValue(guessedPal.number, answer.number)}>
+              {guessedPal.number}
+              {checkArrowDirection(guessedPal.number, answer.number)}
+            </div>
+          </>
+          )
+        })}
+  
+      </div>}
     </div>
+    
   );
 };
 
