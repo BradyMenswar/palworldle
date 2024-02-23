@@ -8,6 +8,8 @@ import {
 import palData from "./pals.json";
 import { Tooltip } from "react-tooltip";
 
+import Cooling from "./work-icons/Cooling";
+
 interface Pal {
   name: string;
   number: number;
@@ -34,8 +36,6 @@ const Classic = () => {
   const correctColor = "bg-green-400";
   const wrongColor = "bg-red-400";
   const partialColor = "bg-yellow-400";
-
-  const correctFill: React.CSSProperties = { fill: correctColor };
 
   useEffect(() => {
     const results = remainingPals.filter((pal) => {
@@ -218,13 +218,13 @@ const Classic = () => {
                   {guessedPal.work_suitability.map((work) => {
                     return (
                       <>
-                        <img
+                        {/* <img
                           id={work.replace(" ", "-")}
                           className={"object-cover h-8"}
-                          style={correctFill}
                           src={`${process.env.PUBLIC_URL}/work-icons/${work}.svg`}
                           alt={work}
-                        />
+                        /> */}
+                        <Cooling color={checkValueInArray(work, answer.work_suitability)}/>
                         <Tooltip
                           anchorSelect={"#" + work.replace(" ", "-")}
                           content={work}
