@@ -7,8 +7,9 @@ import {
 } from "react-icons/ai";
 import palData from "./pals.json";
 import { Tooltip } from "react-tooltip";
-
+import theme from "./tailwind-colors";
 import Cooling from "./work-icons/Cooling";
+import Deforesting from "./work-icons/Deforesting";
 
 interface Pal {
   name: string;
@@ -33,9 +34,9 @@ const Classic = () => {
   const [filteredPals, setFilteredPals] = useState<Pal[]>([]);
   const [guessedPals, setGuessedPals] = useState<Pal[]>([]);
 
-  const correctColor = "bg-green-400";
-  const wrongColor = "bg-red-400";
-  const partialColor = "bg-yellow-400";
+  const correctColor = "bg-county-green-400";
+  const wrongColor = "bg-geraldine-400";
+  const partialColor = "bg-shalimar-400";
 
   useEffect(() => {
     const results = remainingPals.filter((pal) => {
@@ -44,6 +45,38 @@ const Classic = () => {
     });
     setFilteredPals(results);
   }, [searchTerm]);
+
+  function extractColorAndShade(input: string) {
+    const regex = /^bg-([a-z-]+)-(\d+)$/;
+    const match = input.match(regex);
+    if (match) {
+      const colorName = match[1];
+      const shade = parseInt(match[2]);
+      return { colorName, shade };
+    } else {
+      return null;
+    }
+  }
+  function getColorHex(colorClass: string) {
+    const colorProperties = extractColorAndShade(colorClass);
+    if (colorProperties) {
+      const colorShades = theme.colors[colorProperties.colorName];
+      if (!colorShades) {
+        console.error(`Color ${colorProperties.colorName} not found.`);
+        return undefined;
+      }
+
+      const hexValue = colorShades[colorProperties.shade];
+      if (!hexValue) {
+        console.error(
+          `Shade ${colorProperties.shade} not found for color ${colorProperties.colorName}.`
+        );
+        return undefined;
+      }
+
+      return hexValue;
+    }
+  }
 
   function areArraysIdentical(array1: string[], array2: string[]): boolean {
     return (
@@ -221,10 +254,14 @@ const Classic = () => {
                         {/* <img
                           id={work.replace(" ", "-")}
                           className={"object-cover h-8"}
-                          src={`${process.env.PUBLIC_URL}/work-icons/${work}.svg`}
+                          src={`${process.env.PUBLIC_URL}/work-icons/${work}.png`}
                           alt={work}
                         /> */}
-                        <Cooling color={checkValueInArray(work, answer.work_suitability)}/>
+                        <Deforesting
+                          color={getColorHex(
+                            checkValueInArray(work, answer.work_suitability)
+                          )}
+                        />
                         <Tooltip
                           anchorSelect={"#" + work.replace(" ", "-")}
                           content={work}

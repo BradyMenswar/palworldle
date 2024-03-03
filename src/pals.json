@@ -5,7 +5,7 @@
         "elements": ["Normal"],
         "title": "Big Floof",
         "work_suitability": ["Handiwork", "Farming", "Transporting"],
-        "colors": ["White"],
+        "colors": ["White", "Black"],
         "mount_type": "Not ridable",
         "entry": "A walk up a hill tends to end with this Pal tumbling back down. This causes it to become dizzy and unable to move, making it easy to capture and kill. As a result, this Pal has tumbled down to the very bottom of the food chain itself.",
         "emojis": ["🍙", "🤘", "⚽", "🐏"],
